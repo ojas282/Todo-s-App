@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import Search from "./Search";
@@ -7,7 +7,17 @@ function TodoList() {
   const [todos, setTodos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  //function to add a todo to our todo list
+  // load todos from the server when the component mounts
+  useEffect(() => {
+    fetch("http://localhost:3001/api/todos")
+      .then((response) => response.json())
+      .then((data) => {
+        setTodos(data);
+      })
+      .catch((error) => console.error("Error fetching the todos:", error));
+  }, []);
+
+  // Function to add a todo to our todo list
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
@@ -17,11 +27,21 @@ function TodoList() {
       createdAt: new Date().toISOString(),
       removedAt: null,
     };
-    const newTodos = [newTodo, ...todos];
-    setTodos(newTodos);
+    fetch("http://localhost:3001/api/todos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTodo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTodos((prevTodos) => [data, ...prevTodos]);
+      })
+      .catch((error) => console.error("Error adding todo:", error));
   };
 
-  //function to update our pre-existing todo
+  // Function to update our pre-existing todo
   const updateTodo = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
@@ -39,11 +59,17 @@ function TodoList() {
     );
   };
 
-  //function to remove a todo after its completion
+  // function to remove a todo after its completion
   const removeTodo = (id) => {
-    const removeArr = [...todos].filter((todo) => todo.id !== id);
-    setTodos(removeArr);
+    fetch(`http://localhost:3001/api/todos/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+      })
+      .catch((error) => console.error("Error deleting todo:", error));
   };
+
   const completeTodo = (id) => {
     let updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
@@ -54,7 +80,7 @@ function TodoList() {
     setTodos(updatedTodos);
   };
 
-  //todo search functionality
+  // todo search functionality
   const filteredTodos = todos.filter((todo) =>
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
   );

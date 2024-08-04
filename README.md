@@ -10,7 +10,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.postimg.cc/gJKj9Qgm/temp-Imageust8-XH.avif" alt="project-screenshot" width="100%" height="400/">
+<img src="https://i.postimg.cc/gJKj9Qgm/temp-Imageust8-XH.avif" alt="project-screenshot" width="100%" height="120%/">
 
   
   

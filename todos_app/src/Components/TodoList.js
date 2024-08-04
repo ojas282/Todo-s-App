@@ -17,7 +17,7 @@ function TodoList() {
       .catch((error) => console.error("Error fetching the todos:", error));
   }, []);
 
-  // Function to add a todo to our todo list
+  // function to add a todo to our todo list
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
@@ -41,7 +41,7 @@ function TodoList() {
       .catch((error) => console.error("Error adding todo:", error));
   };
 
-  // Function to update our pre-existing todo
+  // function to update our pre-existing todo
   const updateTodo = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;

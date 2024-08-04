@@ -12,17 +12,30 @@ function TodoList() {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
-    const newTodos = [todo, ...todos];
+    const newTodo = {
+      ...todo,
+      createdAt: new Date().toISOString(),
+      removedAt: null,
+    };
+    const newTodos = [newTodo, ...todos];
     setTodos(newTodos);
   };
 
-  //function to update our pre existing todo
+  //function to update our pre-existing todo
   const updateTodo = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
     }
     setTodos((prev) =>
-      prev.map((item) => (item.id === todoId ? newValue : item))
+      prev.map((item) =>
+        item.id === todoId
+          ? {
+              ...newValue,
+              createdAt: item.createdAt,
+              removedAt: item.removedAt,
+            }
+          : item
+      )
     );
   };
 
@@ -31,7 +44,6 @@ function TodoList() {
     const removeArr = [...todos].filter((todo) => todo.id !== id);
     setTodos(removeArr);
   };
-
   const completeTodo = (id) => {
     let updatedTodos = todos.map((todo) => {
       if (todo.id === id) {

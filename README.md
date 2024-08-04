@@ -4,9 +4,7 @@
 
 <p id="description">To Do List is a React-based application for managing tasks effectively. The application has a Node.js and Express backend that handles data storage and retrieval while the frontend provides users with the power and functionality to add modify and delete actions.</p>
 
-<h2>🚀 Demo</h2>
 
-[https://ojas-todolist.netlify.app](https://ojas-todolist.netlify.app)
 
 <h2>Project Screenshots:</h2>
 

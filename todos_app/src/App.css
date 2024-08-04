@@ -57,7 +57,7 @@ h1 {
 .todo-input {
   padding: 14px 16px;
   border-radius: 4px 0 0 4px;
-  border: 2px solid #553f91;
+  border: 2px solid rgb(174, 126, 238);
   outline: none;
   width: 100%;
   max-width: 320px;
@@ -76,12 +76,13 @@ h1 {
   cursor: pointer;
   outline: none;
   background: linear-gradient(
-    180deg,
-    #553f91 0%,
-    #553f91 100%
+    90deg,
+    rgb(174, 125, 238) 0%,
+    rgb(95, 65, 242) 100%
   );
   color: #ffffff;
   text-transform: capitalize;
+  width: 110px;
 }
 
 .todo-input.edit {
@@ -97,6 +98,9 @@ h1 {
   padding: 16px 22px;
 }
 
+.todo-button{
+  width: 1i0px;
+}
 .todo-container {
   display: flex;
   flex-direction: row;
@@ -131,7 +135,7 @@ h1 {
 .todo-row:nth-child(4n + 2) {
   background: linear-gradient(
     90deg,
-    rgba(255, 12, 241, 1) 0%,
+    rgb(144, 38, 38) 0%,
     rgba(250, 0, 135, 1) 100%
   );
 }
@@ -163,10 +167,10 @@ h1 {
 .search-input {
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
-  border: 2px solid #553f91;
+  border: 2px solid rgb(174, 125, 238) ;
   outline: none;
   width: 100%;
-  max-width: 405px;
+  max-width: 430px;
   background: transparent;
   color: #fff;
   margin-bottom: 16px;
@@ -233,13 +237,17 @@ h1 {
   color: #ffffff;
   text-transform: capitalize;
 }
+.margin{
+
+  margin-bottom: 15px;
+}
 
 @media (max-width: 768px) {
   .todo-app {
     margin: 32px auto;
   }
   .search-input{
-    width: 69%;
+    width: 74%;
   }
 
   .todo-input {

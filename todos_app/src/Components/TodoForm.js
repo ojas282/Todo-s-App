@@ -27,7 +27,7 @@ function TodoForm({ onSubmit, edit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="margin" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder={edit ? "Update your item" : "Add a todo"}

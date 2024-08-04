@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": 3107,
+      "text": "Ojas",
+      "isComplete": false,
+      "createdAt": "2024-08-04T11:12:14.478Z",
+      "lastUpdate": "2024-08-04T11:12:14.478Z",
+      "removedAt": null
+    },
+    {
+      "id": 931,
+      "text": "kjfbe",
+      "isComplete": false,
+      "createdAt": "2024-08-04T11:13:36.566Z",
+      "lastUpdate": "2024-08-04T11:13:36.566Z",
+      "removedAt": null
+    },
+    {
+      "id": 3839,
+      "text": "efknefw",
+      "isComplete": false,
+      "createdAt": "2024-08-04T11:13:45.892Z",
+      "lastUpdate": "2024-08-04T11:13:45.892Z",
+      "removedAt": null
+    }
+  ]
+}

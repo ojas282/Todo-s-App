@@ -8,6 +8,8 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
     id: null,
     value: "",
   });
+  //state for expandable todo
+  const [expandedTodo, setExpandedTodo] = useState(null);
 
   const submitUpdate = (value) => {
     updateTodo(edit.id, value);
@@ -20,14 +22,12 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
   if (edit.id) {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
-  return todos.map((todo, index) => (
+  return todos.map((todo) => (
     <div
-      className={todo.isComplete ? "todo-row complete" : "todo-row"}
-      key={index}
+      className={`todo-row ${todo.isComplete ? "complete" : ""}`}
+      key={todo.id}
     >
-      <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-        {todo.text}
-      </div>
+      <div onClick={() => completeTodo(todo.id)}>{todo.text}</div>
       <div className="icons">
         <RiCloseCircleLine
           onClick={() => removeTodo(todo.id)}
@@ -38,6 +38,24 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
           className="edit-icon"
         />
       </div>
+      <button
+        onClick={() =>
+          setExpandedTodo(expandedTodo === todo.id ? null : todo.id)
+        }
+      >
+        {expandedTodo === todo.id ? "Collapse" : "Expand"}
+      </button>
+      {expandedTodo === todo.id && (
+        <div className="todo-details">
+          <p>Description: {todo.description || "No description"}</p>
+          <p>
+            Last Updated:{" "}
+            {todo.lastUpdate
+              ? new Date(todo.lastUpdate).toLocaleString()
+              : "Never"}
+          </p>
+        </div>
+      )}
     </div>
   ));
 }

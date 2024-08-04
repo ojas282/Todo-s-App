@@ -8,12 +8,22 @@
 
 body {
   background: linear-gradient(
-    90deg,
-    rgb(0, 81, 255) 0%,
-    rgb(132, 0, 255) 100%
-    
+    360deg,
+    #654ea3 0%,
+    #eaafc8 100%
   );
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
 .todo-app {
   display: flex;
   flex-direction: column;
@@ -45,7 +55,7 @@ h1 {
 .todo-input {
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
-  border: 2px solid #5d0cff;
+  border: 2px solid #553f91;
   outline: none;
   width: 320px;
   background: transparent;
@@ -63,11 +73,11 @@ h1 {
   cursor: pointer;
   outline: none;
   background: linear-gradient(
-    90deg,
-    rgb(51, 4, 146) 0%,
-    rgba(155, 0, 250, 1) 100%
+    180deg,
+    #553f91 0%,
+    #553f91 100%
   );
-  color: #fff;
+  color: #ffffff;
   text-transform: capitalize;
 }
 
@@ -145,4 +155,62 @@ h1 {
 
 .edit-icon {
   color: #fff;
+}
+
+.search-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #553f91;
+  outline: none;
+  width: 405px;
+  background: transparent;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.search-input::placeholder {
+  color: #e2e2e2;
+}
+
+.todo-details {
+  margin-top: 10px;
+  padding: 10px;
+  background: #32235c;
+  border-radius: 5px;
+}
+
+.footer {
+  background-color: #161a2b;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #553f91;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
 }

@@ -1,56 +1,44 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
-function TodoForm(props) {
-  //making the functionality so that when on updating the todo the update field isn't shown empty but pre filled with last filled text
-  const [input, setInputs] = useState(props.edit ? props.edit.value : "");
+function TodoForm({ onSubmit, edit }) {
+  const [input, setInput] = useState(edit ? edit.value : "");
+
+  useEffect(() => {
+    if (edit) {
+      setInput(edit.value);
+    }
+  }, [edit]);
 
   const handleChange = (e) => {
-    setInputs(e.target.value);
+    setInput(e.target.value);
   };
 
-  // removing the page refreshing feature when we click Add todo
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    //generating a new object with a new id for the new item
-    props.onSubmit({
-      id: Math.floor(Math.random() * 10000),
+    onSubmit({
+      id: edit ? edit.id : Math.floor(Math.random() * 10000),
       text: input,
-      description: "",
-      lastUpdate: new Date(),
+      isComplete: edit ? edit.isComplete : false,
+      createdAt: edit ? edit.createdAt : new Date().toISOString(),
+      lastUpdate: new Date().toISOString(),
+      removedAt: null,
     });
-
-    setInputs("");
+    setInput("");
   };
 
   return (
-    // adding form field for the user to add a new todo
-    <form className="todo-form" onSubmit={handleSubmit}>
-      {props.edit ? (
-        <>
-          <input
-            type="text"
-            placeholder="Update your item"
-            value={input}
-            name="text"
-            className="todo-input"
-            onChange={handleChange}
-          />
-          <button className="todo-button">Update</button>
-        </>
-      ) : (
-        <>
-          <input
-            type="text"
-            placeholder="Add a Todo"
-            value={input}
-            name="text"
-            className="todo-input"
-            onChange={handleChange}
-          />
-          <button className="todo-button">Add todo</button>
-        </>
-      )}
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder={edit ? "Update your item" : "Add a todo"}
+        value={input}
+        name="text"
+        className="todo-input"
+        onChange={handleChange}
+      />
+      <button className="todo-button">
+        {edit ? "Update Todo" : "Add Todo"}
+      </button>
     </form>
   );
 }

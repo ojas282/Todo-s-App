@@ -8,7 +8,8 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
     id: null,
     value: "",
   });
-  //state for expandable todo
+
+  // State for expandable todo
   const [expandedTodo, setExpandedTodo] = useState(null);
 
   const submitUpdate = (value) => {
@@ -22,6 +23,7 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
   if (edit.id) {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
+
   return todos.map((todo) => (
     <div
       className={`todo-row ${todo.isComplete ? "complete" : ""}`}
@@ -39,6 +41,7 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
         />
       </div>
       <button
+        className="button_expand"
         onClick={() =>
           setExpandedTodo(expandedTodo === todo.id ? null : todo.id)
         }
